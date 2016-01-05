@@ -1,3 +1,17 @@
 // Place all the styles related to the shoe controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background: lightgreen;
+}
+
+.card {
+  background: white;
+  margin: 10px;
+  padding: 2px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  .suit {
+    font-size: 275%;
+  }
+}
