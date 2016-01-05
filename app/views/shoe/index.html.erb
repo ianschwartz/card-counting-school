@@ -1,0 +1,16 @@
+<div id='app'>
+  <button @click='hitMe'>Hit me!</button><br />
+
+  <h3>Count:</h3>
+  {{ count }}
+  <h3>My hand:</h3>
+  <div v-for='card in hand'>
+    {{ card.rank }}{{ card.suit }} {{ card.value }}
+  </div>
+
+  <p>
+    <h3>Remaining Cards:</h3>
+    <span v-for='card in cards'>
+      {{ card.rank }}{{ card.suit }}
+    </span>
+</div>
