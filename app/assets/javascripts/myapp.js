@@ -1,7 +1,8 @@
 var vm = new Vue ({
   el: '#app',
   data: {
-    cards: gon.deck,
+    deck: gon.deck,
+    cards: gon.deck.cards,
     hand: [],
     count: 0
   },
