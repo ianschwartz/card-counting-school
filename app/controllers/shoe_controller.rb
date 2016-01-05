@@ -1,5 +1,8 @@
 class ShoeController < ApplicationController
   def index
-    gon.deck = Deck.new(1)
+  end
+
+  def show
+    gon.deck = Deck.new(params[:id])
   end
 end

@@ -1,7 +1,7 @@
 class Deck
   def initialize(number)
     @cards = []
-    number.times do 
+    number.to_i.times do 
       Card.all.each do |c|
         @cards << c
       end
