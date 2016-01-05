@@ -8,7 +8,7 @@ var vm = new Vue ({
 
   methods: {
     hitMe: function() {
-      if (this.cards.length === 0) {
+      if (this.cards.length <= 10) {
         alert('No more cards!');
       } else {
         var card = this.cards[0];
