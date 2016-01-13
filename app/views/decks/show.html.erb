@@ -1,22 +1,32 @@
 <div class='container'>
   <div class='row'>
+    <div class='col-sm-12 text-center'>
+      <button class='btn btn-primary btn-lg' @click='hitMe'>Hit me!</button>
+    </div>
+    <div class='col-sm-3'>
+      <h3>Running Count:</h3>
+      {{ count }}
+      <h3>True Count:</h3>
+      {{ trueCount }}
+      <h3>Decks Remaining:</h3>
+      {{ decksRemaining }}
+    </div>
     <div class='col-sm-9'>
       <div class='row'>
-        <div class='row'>
-          <div class='col-sm-2 col-sm-offset-5'>
-            <button class='btn btn-primary btn-lg' @click='hitMe'>Hit me!</button>
-          </div>
-        </div>
         <h3>My hand:</h3>
         <div v-for='card in hand'>
           <is-card :card='card'></is-card>
         </div>
       </div>
     </div>
-    <div class='col-sm-3'>
-      <h3>Count:</h3>
-      {{ count }}
-    </div>
+  </div>
+    <p>
+      <h3>Remaining Cards:</h3>
+      <span v-for='card in cards'>
+        {{ card.rank }}{{ card.suit }}
+      </span>
+    </p>
+  </div>
 </div>
 
 <template id='card-template'>
@@ -38,12 +48,3 @@
     </div>
   </div>
 </template>
-
-    <p>
-      <h3>Remaining Cards:</h3>
-      <span v-for='card in cards'>
-        {{ card.rank }}{{ card.suit }}
-      </span>
-    </p>
-  </div>
-</div>

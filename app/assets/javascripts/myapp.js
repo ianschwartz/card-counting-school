@@ -12,6 +12,19 @@ var vm = new Vue ({
     count: 0
   },
 
+  computed: {
+    trueCount: function(){
+      var total = this.count / this.decksRemaining;
+      var rounded = total.toFixed(2);
+      return rounded;
+    },
+    decksRemaining: function() {
+      var total = (this.cards.length / 52);
+      var rounded = total.toFixed(1);
+      return rounded;
+    }
+  },
+
   methods: {
     hitMe: function() {
       if (this.cards.length <= 10) {
