@@ -3,10 +3,13 @@
     <div class='col-sm-12'>
       <div v-if='myTurn'>
         <button @click='hitMe(hands.player)' class='btn btn-lg btn-primary'>Hit Me</button>
-        <button @click='turnOver()' class='btn btn-lg btn-primary'>Stick</button> {{ message }}
+        <button @click='turnOver()' class='btn btn-lg btn-primary'>Stick</button>
       </div>
       <div v-if="!myTurn">
         <button @click='hitMe(hands.dealer)' class='btn btn-lg btn-primary'>Hit Dealer</button>
+      </div>
+      <div class='message'>
+        <h2>{{ message }}</h2>
       </div>
 
     </div>

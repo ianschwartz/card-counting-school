@@ -14,7 +14,7 @@ var vm = new Vue ({
     },
     count: 0,
     myTurn: true,
-    message: ''
+    message: 'Your Turn'
   },
 
   computed: {
@@ -50,7 +50,10 @@ var vm = new Vue ({
     },
     turnOver: function() {
       this.myTurn = false;
-      //this.dealerTurn();
+      this.dealerTurn();
+    },
+    dealerTurn: function() {
+      this.message = "Dealer's Turn";
     },
     gameOver: function(message) {
       this.message = message;
