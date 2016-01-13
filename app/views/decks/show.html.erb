@@ -20,7 +20,7 @@
 </div>
 
 <template id='card-template'>
-  <div class='card col-xs-2 col-sm-1'>
+  <div class='card col-xs-2 col-sm-1' v-bind:style='{ color: card.color }'>
     <div class='row'>
       <div class='col-xs-10 col-xs-offset-1'>
         {{ card.rank }}
