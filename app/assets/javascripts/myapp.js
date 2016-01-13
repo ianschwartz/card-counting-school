@@ -13,7 +13,8 @@ var vm = new Vue ({
       dealer: []
     },
     count: 0,
-    blah: 0
+    myTurn: true,
+    message: ''
   },
 
   computed: {
@@ -45,12 +46,30 @@ var vm = new Vue ({
       this.count += card.value;        
       hand.push(card);
       this.cards.shift();
-      //   var card = this.nextCard;
-      //   this.hands.push(card);
-      //   this.cards.shift();
-      //   this.count += card.value;
-      // }
       }
+    },
+    turnOver: function() {
+      this.myTurn = false;
+      //this.dealerTurn();
+    },
+    gameOver: function(message) {
+      this.message = message;
+      this.newGame;
+    },
+    newGame: function() {
+      this.myTurn = true;
+      this.hands.player = [];
+      this.hands.dealer = [];
+      this.message = 'Your turn again!';
+      this.newDeal();
+    },
+    newDeal: function() {
+      this.hitMe(this.hands.player);
+      this.hitMe(this.hands.dealer);
+      this.hitMe(this.hands.player); 
+      this.hitMe(this.hands.dealer);
     }
   }
 });
+
+window.onload = vm.newDeal();

@@ -1,8 +1,13 @@
 <div class='container'>
   <div class='row'>
     <div class='col-sm-12'>
-      <button @click='hitMe(hands.player)' class='btn btn-lg btn-primary'>Hit Me</button>
-      <button @click='hitMe(hands.dealer)' class='btn btn-lg btn-primary'>Hit Dealer</button>
+      <div v-if='myTurn'>
+        <button @click='hitMe(hands.player)' class='btn btn-lg btn-primary'>Hit Me</button>
+        <button @click='turnOver()' class='btn btn-lg btn-primary'>Stick</button> {{ message }}
+      </div>
+      <div v-if="!myTurn">
+        <button @click='hitMe(hands.dealer)' class='btn btn-lg btn-primary'>Hit Dealer</button>
+      </div>
 
     </div>
     <div class='col-sm-3'>
@@ -23,7 +28,9 @@
       <div class='row'>
         <h3>Dealer's hand:</h3>
         <div v-for='card in hands.dealer' class='card col-xs-2 col-sm-1'>
-          <is-card :card='card'></is-card>
+          <div v-if='!myTurn || card == hands.dealer[0]'>
+            <is-card :card='card'></is-card>
+          </div>
         </div>
       </div>
     </div>
