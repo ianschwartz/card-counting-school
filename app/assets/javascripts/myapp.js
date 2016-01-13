@@ -8,11 +8,18 @@ var vm = new Vue ({
   data: {
     deck: gon.deck,
     cards: gon.deck.cards,
-    hand: [],
-    count: 0
+    hands: {
+      player: [],
+      dealer: []
+    },
+    count: 0,
+    blah: 0
   },
 
   computed: {
+    nextCard: function() {
+      return this.cards[0];
+    },
     trueCount: function(){
       var total = this.count / this.decksRemaining;
       var rounded = total.toFixed(2);
@@ -22,18 +29,27 @@ var vm = new Vue ({
       var total = (this.cards.length / 52);
       var rounded = total.toFixed(1);
       return rounded;
+    },
+    activePlayer: function() {
+      var text = 'hands.player';
+      return text;
     }
   },
 
   methods: {
-    hitMe: function() {
+    hitMe: function(hand) {
       if (this.cards.length <= 10) {
         alert('No more cards!');
       } else {
-        var card = this.cards[0];
-        this.hand.unshift(card);
-        this.cards.shift();
-        this.count += card.value;
+      var card = this.nextCard;
+      this.count += card.value;        
+      hand.push(card);
+      this.cards.shift();
+      //   var card = this.nextCard;
+      //   this.hands.push(card);
+      //   this.cards.shift();
+      //   this.count += card.value;
+      // }
       }
     }
   }

@@ -1,7 +1,9 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-sm-12 text-center'>
-      <button class='btn btn-primary btn-lg' @click='hitMe'>Hit me!</button>
+    <div class='col-sm-12'>
+      <button @click='hitMe(hands.player)' class='btn btn-lg btn-primary'>Hit Me</button>
+      <button @click='hitMe(hands.dealer)' class='btn btn-lg btn-primary'>Hit Dealer</button>
+
     </div>
     <div class='col-sm-3'>
       <h3>Running Count:</h3>
@@ -14,7 +16,13 @@
     <div class='col-sm-9'>
       <div class='row'>
         <h3>My hand:</h3>
-        <div v-for='card in hand'>
+        <div v-for='card in hands.player' class='card col-xs-2 col-sm-1'>
+          <is-card :card='card'></is-card>
+        </div>
+      </div>
+      <div class='row'>
+        <h3>Dealer's hand:</h3>
+        <div v-for='card in hands.dealer' class='card col-xs-2 col-sm-1'>
           <is-card :card='card'></is-card>
         </div>
       </div>
@@ -30,7 +38,7 @@
 </div>
 
 <template id='card-template'>
-  <div class='card col-xs-2 col-sm-1' v-bind:style='{ color: card.color }'>
+  <div v-bind:style='{ color: card.color }'>
     <div class='row'>
       <div class='col-xs-10 col-xs-offset-1'>
         {{ card.rank }}
