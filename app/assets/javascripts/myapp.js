@@ -14,7 +14,11 @@ var vm = new Vue ({
     },
     count: 0,
     myTurn: true,
-    message: 'Your Turn'
+    message: 'Your Turn',
+    scores: {
+      player: 0,
+      dealer: 0
+    }
   },
 
   computed: {
@@ -34,18 +38,74 @@ var vm = new Vue ({
     activePlayer: function() {
       var text = 'hands.player';
       return text;
+    },
+    playerBust: function() {
+      var score = this.scores.player;
+      if (score >= 22) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    dealerBust: function() {
+      var score = this.scores.dealer;
+      if (score >= 22) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    noMore: function() {
+      if (this.playerBust || this.dealerBust) {
+        return true;
+      } else {
+        return false;
+      }
     }
+    // },
+    // activeScore: function() {
+    //   if (this.myTurn) {
+    //     return this.myScore;
+    //   } else {
+    //     return this.dealerScore;
+    //   }
+    // }
   },
 
   methods: {
+    points: function(arg) {
+      var card = arg;
+      if (card == 'A') {
+        return 11;
+      } else if ((card == 'J') || (card == 'Q') || (card == "K")) {
+        return 10;
+      } else {
+        return parseInt(arg);
+      }
+    },
     hitMe: function(hand) {
       if (this.cards.length <= 10) {
         alert('No more cards!');
       } else {
       var card = this.nextCard;
-      this.count += card.value;        
+      this.count += card.value;
       hand.push(card);
       this.cards.shift();
+      this.addScore(card.rank);
+      }
+    },
+    addScore: function(arg) {
+      var arg = arg;
+      if (this.myTurn) {
+        this.scores.player += this.points(arg);
+        if (this.playerBust) {
+          this.gameOver('You busted!');
+        }
+      } else {
+        this.scores.dealer += this.points(arg);
+        if (this.dealerBust) {
+          this.gameOver('Dealer busted!');
+        }
       }
     },
     turnOver: function() {
@@ -57,20 +117,29 @@ var vm = new Vue ({
     },
     gameOver: function(message) {
       this.message = message;
-      this.newGame;
     },
     newGame: function() {
       this.myTurn = true;
       this.hands.player = [];
       this.hands.dealer = [];
-      this.message = 'Your turn again!';
+      this.scores.player = 0;
+      this.scores.dealer = 0;
       this.newDeal();
     },
     newDeal: function() {
       this.hitMe(this.hands.player);
-      this.hitMe(this.hands.dealer);
       this.hitMe(this.hands.player); 
+      this.myTurn = false;
       this.hitMe(this.hands.dealer);
+      this.hitMe(this.hands.dealer);
+      if (this.scores.dealer == 21) {
+        this.gameOver('Dealer has Blackjack');
+      } else if (this.scores.player == 21) {
+        this.gameOver('Player has Blackjack');
+      } else {
+        this.message = 'Your turn again!';
+        this.myTurn = true;
+      }
     }
   }
 });
