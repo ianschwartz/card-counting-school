@@ -1,3 +1,8 @@
+Vue.component('is-card', {
+  props: ['card'],
+  template: '#card-template'
+});
+
 var vm = new Vue ({
   el: '#app',
   data: {

@@ -1,4 +1,4 @@
-class ShoeController < ApplicationController
+class DecksController < ApplicationController
   def index
   end
 

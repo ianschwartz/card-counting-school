@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :shoe
-  root 'shoe#index'
+  resources :users do
+    end
+
+  resources :decks
+  root 'decks#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

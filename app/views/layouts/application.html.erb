@@ -4,13 +4,13 @@
   <title>Vuepractice</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= include_gon %>
+  <%= Gon::Base.render_data %>
 </head>
 <body>
+<div id='app'>
+  <%= yield %>
+</div>
 
-<%= yield %>
-
-
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
