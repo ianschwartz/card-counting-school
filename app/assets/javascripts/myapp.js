@@ -18,7 +18,7 @@ var vm = new Vue ({
         alert('No more cards!');
       } else {
         var card = this.cards[0];
-        this.hand.push(card);
+        this.hand.unshift(card);
         this.cards.shift();
         this.count += card.value;
       }
