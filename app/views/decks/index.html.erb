@@ -1,5 +1,53 @@
-<ul class='decks'>
-  <li><%= link_to "3 decks", deck_path(3) %></li>
-  <li><%= link_to "4 decks", deck_path(4) %></li>
-  <li><%= link_to "5 decks", deck_path(5) %></li>
-</ul>
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-8 col-xs-offset-2'>
+      <h1>Uncle Woody's School of Countin' Cards</h1>
+
+      <p>
+        So y'all think you ain't smart enough to learn to count cards at Blackjack? Reckon it ain't as hard as y'all think! You don't have to be a genius, and you don't have to memorize the entire shoe!  
+      </p>
+
+      <p>
+        Uncle Woody does his countin' the easy way, using the : Each card has a value of either 0, 1, or -1. Add `em up as they're dealt and that's yer "running count"! You're smart enough to add or subtract 1 from a number, ain't ya? The higher the running count gets, the more you bet, because a high count means a large number of 10s, face cards 'n' Aces!
+      </p>
+
+      <div class='row text-center'>
+        <div class='col-sm-4'>
+          2-6:<hr />
+          +1
+        </div>
+        <div class='col-sm-4'>
+          7-9:<hr />
+          +0
+        </div>
+        <div class='col-sm-4'>
+          10-A:<hr />
+          -1
+        </div>
+      </div>
+
+      <p>
+        But casinos know yer going to count, so they use more'n one deck at a time. A count of +5 might sound great when yer workin' with a single deck, but when it comes ta 6 decks, it ain't so compellin'! So we have to do a little math here. Y'all can figger out yer true count like so:
+
+      </p>
+
+      <p id='true-count'>
+        Running Count / Number of Decks Remaining = True Count
+      </p>
+
+      <p>
+        Sounds simple, right? Sho `nuff! Practice by following the links below:
+      </p>
+      <ul class='decks'>
+        <li><%= link_to "1 decks", deck_path(1) %></li>
+        <li><%= link_to "2 decks", deck_path(2) %></li>
+        <li><%= link_to "3 decks", deck_path(3) %></li>
+        <li><%= link_to "4 decks", deck_path(4) %></li>
+        <li><%= link_to "5 decks", deck_path(5) %></li>
+        <li><%= link_to "6 decks", deck_path(6) %></li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
