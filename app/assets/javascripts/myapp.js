@@ -58,18 +58,17 @@ var vm = new Vue ({
     noMore: function() {
       if (this.playerBust || this.dealerBust) {
         return true;
+      } else if (this.dealerStick && !this.myTurn) {
+        return true;
       } else {
         return false;
       }
+    },
+    dealerStick: function() {
+      if (this.scores.dealer >= 17) {
+        return true;
+      }
     }
-    // },
-    // activeScore: function() {
-    //   if (this.myTurn) {
-    //     return this.myScore;
-    //   } else {
-    //     return this.dealerScore;
-    //   }
-    // }
   },
 
   methods: {
@@ -105,6 +104,8 @@ var vm = new Vue ({
         this.scores.dealer += this.points(arg);
         if (this.dealerBust) {
           this.gameOver('Dealer busted!');
+        } else if (this.dealerStick) {
+          this.gameOver('Game over, dude!');
         }
       }
     },
@@ -117,6 +118,7 @@ var vm = new Vue ({
     },
     gameOver: function(message) {
       this.message = message;
+      this.myTurn = false;
     },
     newGame: function() {
       this.myTurn = true;
