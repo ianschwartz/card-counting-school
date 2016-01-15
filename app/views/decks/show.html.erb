@@ -25,6 +25,10 @@
   </div>
   <div v-if='noMore'>
     <button @click='newGame' class='btn btn-lg btn-danger'>New Hand</button>
+  </div>  
+  <div id='user-count'>
+    <h3>My Count:</h3>
+     <button class='btn btn-default' @click='upCount'>Up</button> {{ userCount }} <button class='btn btn-default' @click='downCount'>Down</button>
   </div>
   <div class='message'>
     <h2>{{ message }}</h2>

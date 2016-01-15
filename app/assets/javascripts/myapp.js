@@ -18,7 +18,8 @@ var vm = new Vue ({
     scores: {
       player: 0,
       dealer: 0
-    }
+    },
+    userCount: 0
   },
 
   computed: {
@@ -142,6 +143,12 @@ var vm = new Vue ({
         this.message = 'Your turn again!';
         this.myTurn = true;
       }
+    },
+    upCount: function() {
+      this.userCount += 1;
+    },
+    downCount: function() {
+      this.userCount -= 1;
     }
   }
 });
