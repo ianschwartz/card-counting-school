@@ -7,8 +7,14 @@
   <%= Gon::Base.render_data %>
 </head>
 <body>
-<div id='app'>
-  <%= yield %>
+<div class='container-fluid'>
+  <h1>Uncle Woody's School of Countin' Cards</h1>
+  <%= link_to 'Home', root_path, class: 'btn btn-lg btn-primary' %>
+</div>
+<div id='app' class='container'>
+  <div class='row'>
+    <%= yield %>
+  </div>
 </div>
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

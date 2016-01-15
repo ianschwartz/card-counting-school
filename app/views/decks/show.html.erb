@@ -1,50 +1,40 @@
-<div class='container'>
+<div class='col-sm-7 col-sm-offset-1'>
   <div class='row'>
-    <div class='col-sm-12'>
-      <div v-if='myTurn && !noMore'>
-        <button @click='hitMe(hands.player)' class='btn btn-lg btn-primary'>Hit Me</button>
-        <button @click='turnOver()' class='btn btn-lg btn-primary'>Stick</button>
-      </div>
-      <div v-if="!myTurn && !noMore">
-        <button @click='hitMe(hands.dealer)' class='btn btn-lg btn-primary'>Hit Dealer</button>
-      </div>
-      <div v-if='noMore'>
-        <button @click='newGame' class='btn btn-lg btn-danger'>New Hand</button>
-      </div>
-      <div class='message'>
-        <h2>{{ message }}</h2>
-      </div>
-
+    <h3>My hand:</h3>
+    <div v-for='card in hands.player' class='card col-xs-2 col-sm-1'>
+      <is-card :card='card'></is-card>
     </div>
-    <div class='col-sm-3'>
-      <h3>Running Count:</h3>
-      {{ count }}
-      <h3>True Count:</h3>
-      {{ trueCount }}
-      <h3>Decks Remaining:</h3>
-      {{ decksRemaining }}
-      <h3>Player Score:</h3>
-      {{ scores.player }}
-      <h3>Dealer Score:</h3>
-      {{ scores.dealer }}
-    </div>
-    <div class='col-sm-9'>
-      <div class='row'>
-        <h3>My hand:</h3>
-        <div v-for='card in hands.player' class='card col-xs-2 col-sm-1'>
-          <is-card :card='card'></is-card>
-        </div>
-      </div>
-      <div class='row'>
-        <h3>Dealer's hand:</h3>
-        <div v-for='card in hands.dealer' class='card col-xs-2 col-sm-1'>
-          <div v-if='!myTurn || card == hands.dealer[0]'>
-            <is-card :card='card'></is-card>
-          </div>
-        </div>
+  </div>
+  <div class='row'>
+    <h3>Dealer's hand:</h3>
+    <div v-for='card in hands.dealer' class='card col-xs-2 col-sm-1'>
+      <div v-if='!myTurn || card == hands.dealer[0]'>
+        <is-card :card='card'></is-card>
       </div>
     </div>
   </div>
+</div>
+
+<div class='col-sm-4'>
+  <div v-if='myTurn && !noMore'>
+    <button @click='hitMe(hands.player)' class='btn btn-lg btn-primary'>Hit Me</button>
+    <button @click='turnOver()' class='btn btn-lg btn-primary'>Stick</button>
+  </div>
+  <div v-if="!myTurn && !noMore">
+    <button @click='hitMe(hands.dealer)' class='btn btn-lg btn-primary'>Hit Dealer</button>
+  </div>
+  <div v-if='noMore'>
+    <button @click='newGame' class='btn btn-lg btn-danger'>New Hand</button>
+  </div>
+  <div class='message'>
+    <h2>{{ message }}</h2>
+  </div>
+  <h3>True Count:</h3>
+  {{ trueCount }}
+  <h3>Decks Remaining:</h3>
+  {{ decksRemaining }}
+  <h3>Player Score:</h3>
+  {{ scores.player }}
 </div>
 
 <template id='card-template'>
