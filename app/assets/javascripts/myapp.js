@@ -6,8 +6,7 @@ Vue.component('is-card', {
 var vm = new Vue ({
   el: '#app',
   data: {
-    deck: gon.deck,
-    cards: gon.deck.cards,
+    cards: gon.cards,
     hands: {
       player: [],
       dealer: []

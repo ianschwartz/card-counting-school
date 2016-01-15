@@ -12,6 +12,4 @@ class Deck
   def cards
     @cards
   end
-
-
 end
