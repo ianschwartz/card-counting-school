@@ -28,7 +28,9 @@
   </div>  
   <div id='user-count'>
     <h3>My Count:</h3>
-     <button class='btn btn-default' @click='upCount'>Up</button> {{ userCount }} <button class='btn btn-default' @click='downCount'>Down</button>
+     <button class='btn btn-default' @click='upCount'>Up</button><button class='btn btn-default' @click='downCount'>Down</button><br />
+     <input class='form-control' v-model='userCount'></input>
+     <submit @click='submitCount' class='btn btn-default'>Submit Count</submit>
   </div>
   <div class='message'>
     <h2>{{ message }}</h2>

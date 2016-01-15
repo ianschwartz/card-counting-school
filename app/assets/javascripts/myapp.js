@@ -13,13 +13,16 @@ var vm = new Vue ({
       dealer: []
     },
     count: 0,
+    cardsDealt: 0,
     myTurn: true,
     message: 'Your Turn',
     scores: {
       player: 0,
       dealer: 0
     },
-    userCount: 0
+    userCount: 0,
+    attempts: 0,
+    passed: false
   },
 
   computed: {
@@ -31,11 +34,20 @@ var vm = new Vue ({
       var rounded = total.toFixed(2);
       return rounded;
     },
+    cardsRemaining: function() {
+      return this.cards.length;
+    },
     decksRemaining: function() {
-      var total = (this.cards.length / 52);
-      var rounded = total.toFixed(1);
+      var rounded = (this.cardsRemaining / 52).toFixed(1);
       return rounded;
     },
+    shoeEmpty: function() {
+      if (this.cardsRemaining <= (this.cardsDealt / 6)) {
+        return true;
+      } else {
+        return false;
+      }
+    }, 
     activePlayer: function() {
       var text = 'hands.player';
       return text;
@@ -69,6 +81,13 @@ var vm = new Vue ({
       if (this.scores.dealer >= 17) {
         return true;
       }
+    },
+    canGuess: function() {
+      if (this.attempts < 1) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
 
@@ -84,14 +103,15 @@ var vm = new Vue ({
       }
     },
     hitMe: function(hand) {
-      if (this.cards.length <= 10) {
-        alert('No more cards!');
+      if (this.shoeEmpty) {
+        this.gameOver('No more Cards!');
       } else {
-      var card = this.nextCard;
-      this.count += card.value;
-      hand.push(card);
-      this.cards.shift();
-      this.addScore(card.rank);
+        var card = this.nextCard;
+        this.count += card.value;
+        hand.push(card);
+        this.cards.shift();
+        this.addScore(card.rank);
+        this.cardsDealt += 1;
       }
     },
     addScore: function(arg) {
@@ -149,6 +169,16 @@ var vm = new Vue ({
     },
     downCount: function() {
       this.userCount -= 1;
+    },
+    submitCount: function() {
+      userCount = this.userCount;
+      if (Math.round(userCount) == Math.round(this.trueCount)) {
+        this.passed = true;
+        alert('Yes!');
+      } else {
+        this.attempts += 1;
+        alert('No!');
+      }
     }
   }
 });
