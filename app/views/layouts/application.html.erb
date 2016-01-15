@@ -8,8 +8,21 @@
 </head>
 <body>
 <div class='container-fluid'>
-  <h1>Uncle Woody's School of Countin' Cards</h1>
-  <%= link_to 'Home', root_path, class: 'btn btn-lg btn-primary' %>
+  <div class='row'>
+    <h1 class='brand'>Uncle Woody's School of Countin' Cards</h1>
+    <ul class='nav nav-pills nav-justified'>
+      <li class='presentation'><%= link_to 'Home', root_path %></li>
+      <% if user_signed_in? %>
+        <li class='presentation'><%= link_to 'Edit Account', edit_user_registration_path %></li>
+        <li class='presentation'><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <li>Signed in as <%= current_user.email %></li>
+      <% else %>
+        <li class='presentation'><%= link_to 'Sign In', new_user_session_path %></li>
+        <li class='presentation'><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <li class='presentation'></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 <div id='app' class='container'>
   <div class='row'>
