@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users do
-    end
 
   resources :challenges
   root 'challenges#index'
